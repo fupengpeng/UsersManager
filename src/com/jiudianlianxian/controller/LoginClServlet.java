@@ -36,11 +36,60 @@ public class LoginClServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
+		request.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
 		//接收用户提交的用户名和密码
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		System.out.println("用户名："+username + "   密码："+ password);
+//		System.out.println("用户名："+username + "   密码："+ password);
+		
+		String url = request.getRequestURL().toString();    //请求的网络地址
+		System.out.println("请求网络地址URL："+url);  
+		String uri = request.getRequestURI();   //请求的uri
+		System.out.println("uri:"+uri);
+		String queryString = request.getQueryString();  //请求的字段
+		System.out.println("queryString:"+queryString);
+		
+		//获取请求方的主机名
+		String host = request.getRemoteHost();
+		System.out.println("主机名："+host);
+		
+		//获取请求方的网络端口号
+		int port = request.getRemotePort();
+		System.out.println("请求方的网络端口号port:"+port);
+		//获取请求方web服务器所使用的网络端口号
+		String localPort = request.getRemoteHost();
+		System.out.println("请求方web服务器所使用的网络端口号localPort："+host);
+		//获取请求方web服务器ip地址
+		String localAddr = request.getLocalAddr();
+		System.out.println("请求方web服务器ip地址localAddr："+localAddr);
+		//获取请求方web服务器主机名
+		String localName = request.getLocalAddr();
+		System.out.println("请求方web服务器主机名localName："+localName);
+		
+		if (request.getHeader("x-forwarded-for") == null) {  
+			
+//			String remoteAddrString = request.getRemoteAddr();
+			System.out.println("remoteAddrString=="+request.getRemoteAddr());
+	    }else{
+	    	System.out.println("未获取到ip"+request.getHeader("x-forwarded-for"));
+	    	
+	    }
+
+		
+		
+//		//实现禁止当前用户的登录
+//		String remoteAddrString = request.getRemoteAddr();
+//		if(remoteAddrString.equals("192.168.1.40")){    //如果访问ip是（192.168.1.40）就 禁止访问
+//
+//			System.out.println("remoteAddrString=="+remoteAddrString);
+//			response.sendRedirect("/UsersManager/Error");
+//			
+//			
+//		}
+		
+		
+		
 		
 		
 		
@@ -48,7 +97,7 @@ public class LoginClServlet extends HttpServlet {
 		if(
 //				"fupengpeng".endsWith(username) &&
 				
-				"123456".equals(password)){
+				"111111".equals(password)){
 			//账号密码匹配上，跳转至登录成功界面（servlet提供了两种方法，Sendredirct--转向    forward--转发）
 			// sendRedirect("url");  url:/应用名/servlet的url
 			//Servlet之间传递数据方式1：使用静态类
@@ -57,14 +106,22 @@ public class LoginClServlet extends HttpServlet {
 //			response.sendRedirect("/UsersManager/MainFrameServlet?username="+username+"&password="+password);
 			//Servlet之间传递数据方式3：使用session来传递,可以传递对象
 			
-			request.getSession().setAttribute("username", username);
-		
-			User user = new User();
-			user.setUsername("hahah");
-			user.setPassword("222222");
-			request.getSession().setAttribute("userobj", user);
+//			request.getSession().setAttribute("username", username);
+//		
+//			User user = new User();
+//			user.setUsername("hahah");
+//			user.setPassword("222222");
+//			request.getSession().setAttribute("userobj", user);
+//			
+//			response.sendRedirect("/UsersManager/MainFrameServlet");
 			
-			response.sendRedirect("/UsersManager/MainFrameServlet");
+			//Servlet之间传递数据方式4：转发方式，使用request的setAttribute方法
+			//把username放入到域对象
+			request.setAttribute("username", username);
+			//表示使用转发的方法把request和response对象传递给下一个servlet
+			request.getRequestDispatcher("/Servlet02")
+			.forward(request, response);;  //分派器
+			
 			
 		}else{
 			//账号密码错误，弹出提示并返回登录界面

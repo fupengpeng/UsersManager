@@ -43,4 +43,37 @@
     <servlet-name>GenericServlet</servlet-name>
     <url-pattern>/GenericServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>Error</servlet-name>
+    <servlet-class>com.jiudianlianxian.view.Error</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Error</servlet-name>
+    <url-pattern>/Error</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>MyInfoForm</servlet-name>
+    <servlet-class>com.jiudianlianxian.example.MyInfoForm</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyInfoForm</servlet-name>
+    <url-pattern>/MyInfoForm</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>RegisterCLServlet</servlet-name>
+    <servlet-class>com.jiudianlianxian.example.RegisterCLServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegisterCLServlet</servlet-name>
+    <url-pattern>/RegisterCLServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>Servlet02</servlet-name>
+    <servlet-class>com.jiudianlianxian.view.Servlet02</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Servlet02</servlet-name>
+    <url-pattern>/Servlet02</url-pattern>
+  </servlet-mapping>
 </web-app>
