@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
 		//action说明：/web应用名/Servlet的url
 		out.println("<form action='/UsersManager/LoginClServlet' method='post'>");
 		
-		out.println("用户名<input type='text' name='username'/><br/>");
+		out.println("用户名<input type='text' name='account'/><br/>");
 		out.println("密　码<input type='password' name='password'/><br/>");
 		out.println("<input type='submit' value='登录'/><br/>");
 		out.println("</form>");

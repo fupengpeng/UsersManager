@@ -5,3 +5,19 @@
         02.get
     2.超链接
     3.setdRedirect()方法
+    
+转发：
+    1.发出http网络请求
+    2.解析主句
+    3.解析出web应用
+    4.解析出资源名
+    5.查询servlet01的路径
+    6.init方法
+    7.创建request，response对象，并传递给doPost方法
+    8.doPost方法
+    9.告诉web服务器要找Servlet02
+    10.查询servlet02
+    11.调用servlet02
+    12.response对象返回
+    13.把response的信息拆解
+    14.把结果返回

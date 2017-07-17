@@ -38,6 +38,19 @@ public class MainFrameServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
+		
+		//学习测试
+//		test(request, out);
+		
+		out.println("<h1>主界面</h1>");
+		
+		out.println("<a href='/UsersManager/LoginServlet'>返回登录界面重新登录</a>");
+		
+		
+		
+	}
+
+	private void test(HttpServletRequest request, PrintWriter out) {
 		//Servlet之间传递数据方式1：使用静态类
 //		out.println("<h1>主界面</h1>"+"用戶名："+MyData.name);
 		
@@ -54,9 +67,6 @@ public class MainFrameServlet extends HttpServlet {
 		out.println("<h1>主界面</h1>"+"用戶名--User："+user.getUsername()+"   密码--User："+user.getPassword());
 		
 		out.println("<a href='/UsersManager/LoginServlet'>返回登录界面重新登录</a>");
-		
-		
-		
 	}
 
 	/**
