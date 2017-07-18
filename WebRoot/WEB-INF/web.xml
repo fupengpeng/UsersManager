@@ -68,12 +68,12 @@
     <url-pattern>/RegisterCLServlet</url-pattern>
   </servlet-mapping>
   
-  <servlet>
-    <servlet-name>Servlet02</servlet-name>
-    <servlet-class>com.jiudianlianxian.view.Servlet02</servlet-class>
+   <servlet>
+    <servlet-name>ManageUsers</servlet-name>
+    <servlet-class>com.jiudianlianxian.view.ManageUsers</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>Servlet02</servlet-name>
-    <url-pattern>/Servlet02</url-pattern>
+    <servlet-name>ManageUsers</servlet-name>
+    <url-pattern>/ManageUsers</url-pattern>
   </servlet-mapping>
 </web-app>

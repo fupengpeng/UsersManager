@@ -91,6 +91,7 @@ public class LoginClServlet extends HttpServlet {
 					result = "Login Success!";
 				} else {
 //					request.getRequestDispatcher("/LoginServlet").forward(request, response);
+					request.setAttribute("error", "用户名或者密码错误！");
 					System.out.println("账号密码不匹配，登录失败");
 					result = "Sorry! Account or password error.";
 				}
@@ -102,6 +103,35 @@ public class LoginClServlet extends HttpServlet {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally{
+			if(resultSet != null){
+				try {
+					resultSet.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				resultSet = null;
+			}
+			if(statement != null){
+				try {
+					statement.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				statement = null;
+			}
+			if(connection != null){
+				try {
+					connection.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				connection = null;
+			}
+			
 		}
 
 	}
@@ -179,9 +209,9 @@ public class LoginClServlet extends HttpServlet {
 			// 把username放入到域对象
 			request.setAttribute("username", username);
 			// 表示使用转发的方法把request和response对象传递给下一个servlet
-			request.getRequestDispatcher("/Servlet02").forward(request,
+			request.getRequestDispatcher("/MainFrameServlet").forward(request,
 					response);
-			; // 分派器
+			 // 分派器
 
 		} else {
 			// 账号密码错误，弹出提示并返回登录界面

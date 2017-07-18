@@ -21,3 +21,38 @@
     12.response对象返回
     13.把response的信息拆解
     14.把结果返回
+分页：
+    变量设置：
+    pageNow：  表示第几页，该变量是由用户决定的。随时变化
+    pageCount：  表示总共有几页，一般程序指定好
+                            确定pageCount:
+            if(rowCount%pageSize == 0){
+                pageCount = rowCount/pageSize;
+            }else{
+                pageCount = rowCount/pageSize + 1;
+            }
+            
+            pageCount = (rowCount%pageSize == 0) ?pageCount = rowCount/pageSize:pageCount = rowCount/pageSize + 1;
+            
+            pageCount = (rowCont - 1)/pageSize+1
+            
+    pageSize：  每一页显示几条记录，根据实际情况计算出来的，
+    rowCount：  总共有几条记录，查询数据库得到。
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

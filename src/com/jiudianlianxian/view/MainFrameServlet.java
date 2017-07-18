@@ -42,9 +42,16 @@ public class MainFrameServlet extends HttpServlet {
 		//学习测试
 //		test(request, out);
 		
-		out.println("<h1>主界面</h1>");
+		out.println("<h1>主界面</h1><br/>");
 		
-		out.println("<a href='/UsersManager/LoginServlet'>返回登录界面重新登录</a>");
+		out.println("<a href='/UsersManager/LoginServlet'>返回登录界面重新登录</a><br/>");
+		out.println("<h3>请选择你要进行的操作</h3><br/>");
+		out.println("<a href='/UsersManager/ManageUsers'>管理用户</a><br/>");
+		out.println("<a href='/UsersManager/LoginServlet'>添加用户</a><br/>");
+		out.println("<a href='/UsersManager/LoginServlet'>删除用户</a><br/>");
+		out.println("<a href='/UsersManager/LoginServlet'>管理用户</a><br/>");
+		out.println("<a href='/UsersManager/LoginServlet'>管理用户</a><br/>");
+		out.println("<a href='/UsersManager/LoginServlet'>管理用户</a><br/>");
 		
 		
 		
@@ -59,12 +66,17 @@ public class MainFrameServlet extends HttpServlet {
 //		String username = request.getParameter("username");
 //		String password = request.getParameter("password");
 //		out.println("<h1>主界面</h1>"+"用戶名："+username+"   密碼："+password);
+		
 		//Servlet之间传递数据方式3：使用session来传递
-		String usernameSession = (String) request.getSession().getAttribute("username");
-		out.println("<h1>主界面</h1>"+"用戶名session："+usernameSession);
-		//获取session中的对象
-		User user = (User) request.getSession().getAttribute("userobj");
-		out.println("<h1>主界面</h1>"+"用戶名--User："+user.getUsername()+"   密码--User："+user.getPassword());
+//		String usernameSession = (String) request.getSession().getAttribute("username");
+//		out.println("<h1>主界面</h1>"+"用戶名session："+usernameSession);
+//		//获取session中的对象
+//		User user = (User) request.getSession().getAttribute("userobj");
+//		out.println("<h1>主界面</h1>"+"用戶名--User："+user.getUsername()+"   密码--User："+user.getPassword());
+		
+		// Servlet之间传递数据方式4：转发方式，使用request的setAttribute方法
+		String username =  (String) request.getAttribute("username");
+		out.println("传递的username:"+username);
 		
 		out.println("<a href='/UsersManager/LoginServlet'>返回登录界面重新登录</a>");
 	}

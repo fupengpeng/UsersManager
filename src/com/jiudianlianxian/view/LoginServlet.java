@@ -35,6 +35,7 @@ public class LoginServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		//返回一个界面（html）
+		out.println("<img src='images/hudie.png'/><hr/>");
 		out.println("<h1>用户登录</h1>");
 		//action说明：/web应用名/Servlet的url
 		out.println("<form action='/UsersManager/LoginClServlet' method='post'>");
@@ -43,7 +44,7 @@ public class LoginServlet extends HttpServlet {
 		out.println("密　码<input type='password' name='password'/><br/>");
 		out.println("<input type='submit' value='登录'/><br/>");
 		out.println("</form>");
-		
+		out.println("<img src='images/hudie.png'/><hr/>");
 		
 	}
 
