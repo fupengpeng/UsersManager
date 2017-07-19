@@ -1,31 +1,32 @@
-package com.jiudianlianxian.view;
+package com.jiudianlianxian.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.jiudianlianxian.service.UsersService;
+
 /**
  * 
- * Title: Error
- * Description: 错误
+ * Title: DelClServlet
+ * Description: 用戶刪除處理類
  * Company: 济宁九点连线信息技术有限公司
  * ProjectName: UsersManager
  * @author fupengpeng
- * @date 2017年7月19日 下午5:47:51
+ * @date 2017年7月19日 下午5:09:10
  *
  */
-public class Error extends HttpServlet {
+public class DelClServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Error() {
+    public DelClServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,9 +36,21 @@ public class Error extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html;charset=utf-8");
+		request.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
 		
-		out.println("<h1>操作失败</h1>");
+		//接收uid
+		String uid = (String) request.getAttribute("uid");
+		//调用UsersService中的方法删除
+		if(new UsersService().delUser(uid)){
+			//ok
+			request.getRequestDispatcher("/Ok").forward(request, response);
+		}else{
+			//error
+			request.getRequestDispatcher("/Error").forward(request, response);
+		}
+		
+		
 	}
 
 	/**
@@ -45,7 +58,6 @@ public class Error extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
-		
 	}
 
 }

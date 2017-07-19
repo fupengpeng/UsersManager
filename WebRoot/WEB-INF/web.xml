@@ -51,6 +51,14 @@
     <servlet-name>Error</servlet-name>
     <url-pattern>/Error</url-pattern>
   </servlet-mapping>
+    <servlet>
+    <servlet-name>Ok</servlet-name>
+    <servlet-class>com.jiudianlianxian.view.Ok</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Ok</servlet-name>
+    <url-pattern>/Ok</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>MyInfoForm</servlet-name>
     <servlet-class>com.jiudianlianxian.example.MyInfoForm</servlet-class>
@@ -67,13 +75,20 @@
     <servlet-name>RegisterCLServlet</servlet-name>
     <url-pattern>/RegisterCLServlet</url-pattern>
   </servlet-mapping>
-  
-   <servlet>
+  <servlet>
     <servlet-name>ManageUsers</servlet-name>
     <servlet-class>com.jiudianlianxian.view.ManageUsers</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ManageUsers</servlet-name>
     <url-pattern>/ManageUsers</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DelClServlet</servlet-name>
+    <servlet-class>com.jiudianlianxian.controller.DelClServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DelClServlet</servlet-name>
+    <url-pattern>/DelClServlet</url-pattern>
   </servlet-mapping>
 </web-app>

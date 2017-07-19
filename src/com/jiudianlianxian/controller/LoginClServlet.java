@@ -2,19 +2,14 @@ package com.jiudianlianxian.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jiudianlianxian.entity.User;
-import com.jiudianlianxian.test.MyData;
+import com.jiudianlianxian.domain.User;
+import com.jiudianlianxian.service.UsersService;
 
 /**
  * Servlet implementation class LoginClServlet
@@ -55,84 +50,24 @@ public class LoginClServlet extends HttpServlet {
 		// 接收用户提交的用户名和密码
 		String account = request.getParameter("account");
 		String password = request.getParameter("password");
-		// System.out.println("用户名："+username + "   密码："+ password);
 
 		// 学习测试
 //		test(request, response, username, password);
 
-		// 数据库中查询数据进行匹配验证登录
-		Connection connection = null;
-		Statement statement = null;
-		ResultSet resultSet = null;
-		String result = "";
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			// 2.得到连接
-			connection =
-			// jdbc:oracle:this:@127.0.0.1:1521:ORCLHSP
-			DriverManager.getConnection(
-					"jdbc:mysql://localhost:3306/shoppingmall", "root", "root");
+		UsersService usersService = new UsersService();
+		User user = new User();
+		user.setAccount(account);
+		user.setPassword(password);
+		if (usersService.checkUser(user)) {
 
-			// 连接URL为 jdbc:mysql//服务器地址/数据库名 ，后面的2个参数分别是登陆用户名和密码
-			// 3.创建Statement
-			statement = connection.createStatement();
-//			statement = connection.prepareStatement("select * from user where username=? and password=?");
-			//4.查询数据库获取数据
-			resultSet = statement.executeQuery("select * from user");
-			//5.便利数据匹配数据，判断是否登录成功
-			while (resultSet.next()) {
-				System.out.println(resultSet.getString("account") + "===="
-						+ resultSet.getString("password"));
-				if (resultSet.getString("account").equals(account)
-						&& resultSet.getString("password").equals(password)) {
-
-					request.getRequestDispatcher("/MainFrameServlet").forward(request, response);
-					System.out.println("账号密码匹配，登录成功");
-					result = "Login Success!";
-				} else {
-//					request.getRequestDispatcher("/LoginServlet").forward(request, response);
-					request.setAttribute("error", "用户名或者密码错误！");
-					System.out.println("账号密码不匹配，登录失败");
-					result = "Sorry! Account or password error.";
-				}
-
-			}
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally{
-			if(resultSet != null){
-				try {
-					resultSet.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				resultSet = null;
-			}
-			if(statement != null){
-				try {
-					statement.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				statement = null;
-			}
-			if(connection != null){
-				try {
-					connection.close();
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				connection = null;
-			}
-			
+			request.getRequestDispatcher("/MainFrameServlet").forward(request, response);
+			System.out.println("账号密码匹配，登录成功");
+		} else {
+			request.setAttribute("error", "用户名或者密码错误！");
+//			request.getRequestDispatcher("/LoginServlet").forward(request, response);
+			System.out.println("账号密码不匹配，登录失败");
 		}
+
 
 	}
 

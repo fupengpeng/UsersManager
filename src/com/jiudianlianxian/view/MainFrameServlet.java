@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.jiudianlianxian.entity.User;
+import com.jiudianlianxian.domain.User;
 import com.jiudianlianxian.test.MyData;
 
 /**

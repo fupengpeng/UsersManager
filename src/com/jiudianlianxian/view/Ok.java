@@ -11,21 +11,22 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * 
- * Title: Error
- * Description: 错误
+ * Title: Ok
+ * Description: 给此类一个描述
  * Company: 济宁九点连线信息技术有限公司
  * ProjectName: UsersManager
  * @author fupengpeng
- * @date 2017年7月19日 下午5:47:51
+ * @date 2017年7月19日 下午5:46:37
  *
  */
-public class Error extends HttpServlet {
+//@WebServlet("/Ok")
+public class Ok extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Error() {
+    public Ok() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,7 +38,8 @@ public class Error extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-		out.println("<h1>操作失败</h1>");
+		out.println("<h1>操作正确且成功</h1>");
+		out.println("<a href='/UsersManager/ManageUsers'>返回主界面</a>");
 	}
 
 	/**
@@ -45,7 +47,6 @@ public class Error extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
-		
 	}
 
 }
