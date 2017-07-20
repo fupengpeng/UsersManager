@@ -13,7 +13,6 @@ import com.jiudianlianxian.domain.User;
 import com.jiudianlianxian.service.UsersService;
 
 /**
- * Servlet implementation class ManageUsers
  * Title: ManageUsers
  * Description: 用户管理servlet
  * Company: 济宁九点连线信息技术有限公司
@@ -66,11 +65,24 @@ public class ManageUsers extends HttpServlet {
 				+ "var pageNow = document.getElementById('pageNow'); "
 				// + "window.alert('pageNow='+pageNow.value)"
 				+ "window.open('/UsersManager/ManageUsers?pageNow='+pageNow.value,'_self');"
-				+ "} ");
+//				+ "} "
+//				+ "function confirmoper(){"
+//				+ "return "
+//				+ "window.confirm('确定删除该用户吗？')"
+				+ "}");
 		out.println("</script> ");
-		out.println("<h2>管理用户</h2><a href='/UsersManager/MainFrameServlet'>返回主界面</a><br/><br/><a href='/UsersManager/MainFrameServlet'>安全退出</a><br/>");
+		out.println("<h2>管理用户</h2>"
+				+ "<a href='/UsersManager/MainFrameServlet'>返回主界面</a>"
+				+ "<br/><br/>"
+				+ "<a href='/UsersManager/MainFrameServlet'>安全退出</a><br/>");
 		out.println("<table border='1' bordercolor='green' width='500px'><br/>");
-		out.println("<tr><th>uid</th><th>用户名</th><th>phonenumber</th><th>lication</th><th>detailedaddress</th><th>刪除用戶</th><th>修改用戶</th></tr><br/>");
+		out.println("<tr><th>uid</th>"
+				+ "<th>用户名</th>"
+				+ "<th>phonenumber</th>"
+				+ "<th>lication</th>"
+				+ "<th>detailedaddress</th>"
+				+ "<th>刪除用戶</th>"
+				+ "<th>修改用戶</th></tr><br/>");
 
 		for (User user : al) {
 			out.println("<tr><td>" + user.getUid() + "</td>"+ "<td>" 
@@ -78,8 +90,10 @@ public class ManageUsers extends HttpServlet {
 					+ user.getPhonenumber() + "</td>" + "<td>"
 					+ user.getLocation() + "</td>" + "<td>"
 					+ user.getDetailedaddress() + "</td>"
-							+ "<td><a href='/UsersManager/DelClServlet?id="+user.getUid()+"'>刪除用戶</a></td>"
-							+ "<td><a href='/UsersManager/ManageUsers'>修改用戶</a></td>  </tr><br/>");
+							+ "<td><a onclick='return confirmoper();' href='/UsersManager/UserClServlet?type=delete&uid="+user.getUid()+"'>刪除用戶</a></td>"
+							+ "<td><a href='/UsersManager/UserClServlet?type=gotoUpdateView&uid="+user.getUid()+"'>修改用戶</a></td>  </tr><br/>");
+		
+			System.out.println("user.getUid=="+user.getUid());
 		}
 		out.println("</table><br/>");
 
@@ -92,7 +106,7 @@ public class ManageUsers extends HttpServlet {
 
 		// 分页
 		for (int i = 1; i <= pageCount; i++) {
-			System.out.println(pageCount + "--" + i);
+//			System.out.println(pageCount + "--" + i);
 			out.println("<a href='/UsersManager/ManageUsers?pageNow=" + i
 					+ "'><" + i + "></a>");
 		}
@@ -104,7 +118,8 @@ public class ManageUsers extends HttpServlet {
 		// 显示分页信息
 		out.println("<br/>&nbsp;&nbsp;&nbsp;当前页" + pageNow + "/总页数"
 				+ pageCount + "<br/>");
-		out.println("跳转到<input type='text' id='pageNow' name='pageNow'/><input type='button' onclick='gotoPageNow()' value='跳'/> "); 
+		out.println("跳转到<input type='text' id='pageNow' name='pageNow'/>"
+				+ "<input type='button' onclick='gotoPageNow()' value='跳'/> "); 
 
 	}
 

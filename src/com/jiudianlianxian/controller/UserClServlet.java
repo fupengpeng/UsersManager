@@ -8,11 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.jiudianlianxian.domain.User;
 import com.jiudianlianxian.service.UsersService;
 
 /**
  * 
- * Title: DelClServlet
+ * Title: UserClServlet
  * Description: 用戶刪除處理類
  * Company: 济宁九点连线信息技术有限公司
  * ProjectName: UsersManager
@@ -20,13 +21,13 @@ import com.jiudianlianxian.service.UsersService;
  * @date 2017年7月19日 下午5:09:10
  *
  */
-public class DelClServlet extends HttpServlet {
+public class UserClServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DelClServlet() {
+    public UserClServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,17 +39,35 @@ public class DelClServlet extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		request.setCharacterEncoding("utf-8");
 		PrintWriter out = response.getWriter();
-		
-		//接收uid
-		String uid = (String) request.getAttribute("uid");
-		//调用UsersService中的方法删除
-		if(new UsersService().delUser(uid)){
-			//ok
-			request.getRequestDispatcher("/Ok").forward(request, response);
-		}else{
-			//error
-			request.getRequestDispatcher("/Error").forward(request, response);
+		UsersService usersService = new UsersService();
+		//接收
+		String type = request.getParameter("type");
+		if("delete".equals(type)){
+			//接收uid
+			String uid = (String) request.getParameter("uid");
+			//调用UsersService中的方法删除
+			System.out.println("type="+type+"   uid="+uid);
+			if(usersService.delUser(uid)){
+				//ok
+				request.getRequestDispatcher("/Ok").forward(request, response);
+			}else{
+				//error
+				request.getRequestDispatcher("/Error").forward(request, response);
+			}
+		}else if("gotoUpdateView".equals(type)){
+			//获取要修改的uid
+			String uid = request.getParameter("uid");
+			//根据uid查询数据库，获取userBean
+			User user = usersService.getUserByUid(uid);
+			//传递user对象到下一个界面
+			request.setAttribute("user", user);
+			
+			request.getRequestDispatcher("/UpdateUserView").forward(request, response);
+			
+			
+			
 		}
+		
 		
 		
 	}

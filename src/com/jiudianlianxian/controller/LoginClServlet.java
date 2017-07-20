@@ -12,17 +12,11 @@ import com.jiudianlianxian.domain.User;
 import com.jiudianlianxian.service.UsersService;
 
 /**
- * Servlet implementation class LoginClServlet
- * <p>
- * Title: LoginClServlet
- * </p>
- * <p>
- * Description:
- * </p>
- * <p>
- * Company:
- * </p>
  * 
+ * Title: LoginClServlet
+ * Description: 给此类一个描述
+ * Company: 济宁九点连线信息技术有限公司
+ * ProjectName: UsersManager
  * @author fupengpeng
  * @date 2017年7月15日 上午11:01:14
  *

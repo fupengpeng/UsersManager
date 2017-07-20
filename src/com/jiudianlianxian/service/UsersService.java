@@ -18,10 +18,53 @@ import com.jiudianlianxian.util.SqlHelper;
  *
  */
 public class UsersService {
+	
+	/**
+	 * 
+	 * Description: 根据给定的uid查询数据库数据
+	 * @param uid
+	 * @return
+	 */
+	public User getUserByUid (String uid){
+		
+		User user = new User();
+		String sql = "select * from user where uid='"+uid+"'";
+		ResultSet rs = SqlHelper.executeQuery(sql);
+		try {
+			// 查询数据库,获取上述uid对应的数据
+			while (rs.next()) {
+				
+				user.setId(rs.getInt(1));
+				user.setUid(rs.getString(2));
+				user.setUsername(rs.getString(3));
+				user.setSex(rs.getString(4));
+				user.setPhonenumber(rs.getString(5));
+				user.setLocation(rs.getString(6));
+				user.setDetailedaddress(rs.getString(7));
+				user.setPostcode(rs.getString(8));
+				user.setBirthday(rs.getString(9));
+				user.setWechat(rs.getString(10));
+				user.setGrowthvalue(rs.getString(11));
+				user.setAccount(rs.getString(12));
+				user.setPassword(rs.getString(13));
+				user.setIntegral(rs.getString(14));
+				user.setIsdefaultaddress(rs.getString(15));
+				
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			SqlHelper.close(rs, SqlHelper.getPs(), SqlHelper.getConnection());
+		}
+		
+		return user;
+		
+	}
 
 	/**
 	 * 
-	 * Description: 刪除用戶
+	 * Description: 根据给定的uid刪除用戶
 	 * @param uid
 	 * @return
 	 */
@@ -29,16 +72,19 @@ public class UsersService {
 		boolean b = true;
 		String sql = "delete from user where uid = '"+uid+"'";
 		
-		SqlHelper.executeUpdate(sql);
+		try {
+			System.out.println("uid---"+uid);
+			SqlHelper.executeUpdate(sql);
+		} catch (Exception e) {
+			b = false;
+			e.printStackTrace();
+		}
 		
 		return b;
 	}
 	/**
 	 * 
-	 * <p>
 	 * Description: 获取pageCount
-	 * </p>
-	 * 
 	 * @param pageSize
 	 * @return
 	 */
@@ -65,17 +111,12 @@ public class UsersService {
 
 	}
 
-	/**
-	 * 
-	 * <p>
-	 * Description: 按照分页来获取用户
-	 * </p>
-	 * 
-	 * @param pageNow
-	 *            当前页
-	 * @param pageSize
-	 *            当前页显示的数据数
-	 * @return 用户数据对象集合
+	/**     
+	 * @return 
+	 * Description:  按照分页来获取用户
+	 * @param pageNow  当前页
+	 * @param pageSize  当前页显示的数据数
+	 * @return  用户数据对象集合
 	 */
 	public ArrayList<User> getUsersByPage(int pageNow, int pageSize) {
 		ArrayList<User> al = new ArrayList<User>();
@@ -105,13 +146,9 @@ public class UsersService {
 	}
 
 	/**
-	 * 
-	 * <p>
 	 * Description: 登录验证
-	 * </p>
-	 * 
 	 * @param user
-	 * @return 登录是否成功
+	 * @return  登录是否成功
 	 */
 	public boolean checkUser(User user) {
 

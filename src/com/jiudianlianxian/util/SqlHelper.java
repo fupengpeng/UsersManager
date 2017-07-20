@@ -243,7 +243,7 @@ public class SqlHelper {
 			// 创建一个ps
 			ct = getConnection();
 			ps = ct.prepareStatement(sql);
-			
+			System.out.println("sql=="+sql);
 			// 执行
 			ps.executeUpdate();
 		} catch (SQLException e) {

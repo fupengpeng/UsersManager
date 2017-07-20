@@ -51,7 +51,7 @@
     <servlet-name>Error</servlet-name>
     <url-pattern>/Error</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <servlet-name>Ok</servlet-name>
     <servlet-class>com.jiudianlianxian.view.Ok</servlet-class>
   </servlet>
@@ -84,11 +84,19 @@
     <url-pattern>/ManageUsers</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>DelClServlet</servlet-name>
-    <servlet-class>com.jiudianlianxian.controller.DelClServlet</servlet-class>
+    <servlet-name>UpdateUserView</servlet-name>
+    <servlet-class>com.jiudianlianxian.view.UpdateUserView</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>DelClServlet</servlet-name>
-    <url-pattern>/DelClServlet</url-pattern>
+    <servlet-name>UpdateUserView</servlet-name>
+    <url-pattern>/UpdateUserView</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>UserClServlet</servlet-name>
+    <servlet-class>com.jiudianlianxian.controller.UserClServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UserClServlet</servlet-name>
+    <url-pattern>/UserClServlet</url-pattern>
   </servlet-mapping>
 </web-app>

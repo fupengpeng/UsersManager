@@ -10,9 +10,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class LoginServlet
- * <p>Title: LoginServlet</p>
- * <p>Description: 登录Servlet</p>
- * <p>Company: </p>
+ * Title: LoginServlet
+ * Description: 登录Servlet
+ * Company: 
  * @author fupengpeng
  * @date 2017年7月15日 上午10:42:09
  *
