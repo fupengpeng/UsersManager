@@ -92,6 +92,14 @@
     <url-pattern>/UpdateUserView</url-pattern>
   </servlet-mapping>
   <servlet>
+    <servlet-name>AddUserView</servlet-name>
+    <servlet-class>com.jiudianlianxian.view.AddUserView</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AddUserView</servlet-name>
+    <url-pattern>/AddUserView</url-pattern>
+  </servlet-mapping>
+  <servlet>
     <servlet-name>UserClServlet</servlet-name>
     <servlet-class>com.jiudianlianxian.controller.UserClServlet</servlet-class>
   </servlet>

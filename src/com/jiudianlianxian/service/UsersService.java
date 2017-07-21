@@ -19,6 +19,66 @@ import com.jiudianlianxian.util.SqlHelper;
  */
 public class UsersService {
 	
+	
+	/**
+	 * 
+	 * Description: 添加用户
+	 * @param user
+	 * @return
+	 */
+	public boolean addUser(User user){
+		boolean b = true;
+		String sql = "INSERT INTO user("
+				+ "id,uid,username,sex,phonenumber,"
+				+ "location,detailedaddress,postcode,birthday,wechat,"
+				+ "growthvalue,account,password,integral,isdefaultaddress) "
+				+ "VALUES("
+				+ user.getId()+","+user.getUid()+","+user.getUsername()+","+user.getSex()+","+user.getPhonenumber()+","
+				+ user.getLocation()+","+user.getDetailedaddress()+","+user.getPostcode()+","+user.getBirthday()+","+user.getWechat()+","
+				+ user.getGrowthvalue()+","+ user.getAccount()+","+user.getPassword()+","+user.getIntegral()+","+user.getIsdefaultaddress()+") ;";
+		try {
+			SqlHelper.executeUpdate(sql);
+		} catch (Exception e) {
+			b = false;
+			e.printStackTrace();
+		}
+		return b;
+	}
+	
+	/**
+	 * 
+	 * Description: 修改用户
+	 * @param user
+	 * @return
+	 */
+	public boolean updateUser(User user){
+		boolean b = true;
+		String sql = "UPDATE user SET "
+				+ "username='"+user.getUsername()+"' , "
+				+ "sex='"+user.getSex()+"' ,  "
+				+ "phonenumber='"+user.getPhonenumber()+"' ,  "
+				+ "location='"+user.getLocation()+"' ,  "
+				+ "detailedaddress='"+user.getDetailedaddress()+"' ,  "
+				+ "postcode='"+user.getPostcode()+"' ,  "
+				+ "birthday='"+user.getBirthday()+"' ,  "
+				+ "wechat='"+user.getWechat()+"' ,  "
+				+ "growthvalue='"+user.getGrowthvalue()+"' ,  "
+				+ "account='"+user.getAccount()+"' ,  "
+				+ "password='"+user.getPassword()+"' ,  "
+				+ "integral='"+user.getIntegral()+"' ,  "
+				+ "isdefaultaddress='"+user.getIsdefaultaddress()+"' "
+				+ "WHERE uid='"+user.getUid()+"';";
+		try {
+			SqlHelper.executeUpdate(sql);
+		} catch (Exception e) {
+			b = false;
+			e.printStackTrace();
+		}
+		
+		
+		return b;
+	}
+	
 	/**
 	 * 
 	 * Description: 根据给定的uid查询数据库数据

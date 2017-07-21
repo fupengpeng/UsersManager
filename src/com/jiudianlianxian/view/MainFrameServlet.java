@@ -44,7 +44,7 @@ public class MainFrameServlet extends HttpServlet {
 		out.println("<a href='/UsersManager/LoginServlet'>返回登录界面重新登录</a><br/>");
 		out.println("<h3>请选择你要进行的操作</h3><br/>");
 		out.println("<a href='/UsersManager/ManageUsers'>管理用户</a><br/>");
-		out.println("<a href='/UsersManager/LoginServlet'>添加用户</a><br/>");
+		out.println("<a href='/UsersManager/UserClServlet?type=gotoAddUser'>添加用户</a><br/>");
 		out.println("<a href='/UsersManager/LoginServlet'>删除用户</a><br/>");
 		out.println("<a href='/UsersManager/LoginServlet'>管理用户</a><br/>");
 		out.println("<a href='/UsersManager/LoginServlet'>管理用户</a><br/>");

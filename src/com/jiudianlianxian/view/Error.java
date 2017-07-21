@@ -36,7 +36,7 @@ public class Error extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		PrintWriter out = response.getWriter();
 		
-		out.println("<h1>²Ù×÷Ê§°Ü</h1>");
+		out.println("<h1>"+request.getAttribute("info")+"</h1><br/>");
 	}
 
 	/**
