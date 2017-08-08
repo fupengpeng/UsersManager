@@ -36,6 +36,7 @@ public class UsersService {
 				+ user.getId()+","+user.getUid()+","+user.getUsername()+","+user.getSex()+","+user.getPhonenumber()+","
 				+ user.getLocation()+","+user.getDetailedaddress()+","+user.getPostcode()+","+user.getBirthday()+","+user.getWechat()+","
 				+ user.getGrowthvalue()+","+ user.getAccount()+","+user.getPassword()+","+user.getIntegral()+","+user.getIsdefaultaddress()+") ;";
+		System.out.println("sql====" + sql);
 		try {
 			SqlHelper.executeUpdate(sql);
 		} catch (Exception e) {
@@ -274,6 +275,7 @@ public class UsersService {
 		ResultSet rs = SqlHelper.executeQuery(sql);
 		try {
 			if (rs.next()) {
+				System.out.println("userservi==" + rs.toString());
 				b = true;
 			}
 		} catch (SQLException e) {

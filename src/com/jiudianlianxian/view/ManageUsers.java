@@ -74,7 +74,7 @@ public class ManageUsers extends HttpServlet {
 		out.println("<h2>管理用户</h2>"
 				+ "<a href='/UsersManager/MainFrameServlet'>返回主界面</a>"
 				+ "<br/><br/>"
-				+ "<a href='/UsersManager/MainFrameServlet'>安全退出</a><br/>");
+				+ "<a href='/UsersManager/LoginServlet'>安全退出</a><br/>");
 		out.println("<table border='1' bordercolor='green' width='500px'><br/>");
 		out.println("<tr><th>uid</th>"
 				+ "<th>用户名</th>"

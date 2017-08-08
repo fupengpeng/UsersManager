@@ -30,7 +30,6 @@ public class UpdateUserView extends HttpServlet {
      */
     public UpdateUserView() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -57,7 +56,7 @@ public class UpdateUserView extends HttpServlet {
 		out.println("<tr><td>wechat</td><td><input type='text' name='wechat' value='"+user.getWechat()+"'/></td></tr>");
 		out.println("<tr><td>growthvalue</td><td><input type='text' name='growthvalue' value='"+user.getGrowthvalue()+"'/></td></tr>");
 		out.println("<tr><td>account</td><td><input type='text' name='account' value='"+user.getAccount()+"'/></td></tr>");
-		out.println("<tr><td>account</td><td><input type='text' name='password' value='"+user.getPassword()+"'/></td></tr>");
+		out.println("<tr><td>password</td><td><input type='text' name='password' value='"+user.getPassword()+"'/></td></tr>");
 		out.println("<tr><td>integral</td><td><input type='text' name='integral' value='"+user.getIntegral()+"'/></td></tr>");
 		out.println("<tr><td>isdefaultaddress</td><td><input type='text' name='isdefaultaddress' value='"+user.getIsdefaultaddress()+"'/></td></tr>");
 		out.println("<tr><td><input type='submit' value='确认修改'/></td><td><input type='reset' name='uid' value='重新填写'/></td></tr>");

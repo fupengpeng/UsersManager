@@ -44,7 +44,7 @@ public class AddUserView extends HttpServlet {
 		//获取从上个界面传递过来的user
 		out.println("<h1>添加用户</h1>");
 		out.println("<form action='/UsersManager/UserClServlet?type=add' method='post'>");
-		System.out.println("提交添加用户请求，挑战至UserClServlet");
+		System.out.println("提交添加用户请求，跳转至UserClServlet");
 		out.println("<table border=1px bordercolor=green cellspacing=0 width=300px>");
 		out.println("<tr><td>id</td><td><input type='text' name='id' /></td></tr>");
 		out.println("<tr><td>uid</td><td><input type='text' name='uid'/></td></tr>");
@@ -58,13 +58,13 @@ public class AddUserView extends HttpServlet {
 		out.println("<tr><td>wechat</td><td><input type='text' name='wechat' /></td></tr>");
 		out.println("<tr><td>growthvalue</td><td><input type='text' name='growthvalue' /></td></tr>");
 		out.println("<tr><td>account</td><td><input type='text' name='account' /></td></tr>");
-		out.println("<tr><td>account</td><td><input type='text' name='password' /></td></tr>");
+		out.println("<tr><td>password</td><td><input type='text' name='password' /></td></tr>");
 		out.println("<tr><td>integral</td><td><input type='text' name='integral' /></td></tr>");
 		out.println("<tr><td>isdefaultaddress</td><td><input type='text' name='isdefaultaddress' /></td></tr>");
-		out.println("<tr><td><input type='submit' value='添加用户'/></td><td><input type='reset' name='uid' value='确认添加'/></td></tr>");
+		out.println("<tr><td><input type='submit' value='添加用户'/></td><td><input type='reset' name='uid' value='啦啦啦啦啦'/></td></tr>");
 		out.println("</table><br/>");
 		out.println("</form>");
-		out.println("<input type='submit' name='uid' value='确认添加'/>");
+//		out.println("<input type='submit' name='uid' value='确认添加'/>");
 	}
 
 	/**

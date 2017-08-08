@@ -8,13 +8,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+
 import com.jiudianlianxian.domain.User;
 import com.jiudianlianxian.service.UsersService;
+import com.jiudianlianxian.utils.HibernateUtils;
 
 /**
  * 
  * Title: UserClServlet
- * Description: 用戶刪除處理類
+ * Description: 用戶管理處理類
  * Company: 济宁九点连线信息技术有限公司
  * ProjectName: UsersManager
  * @author fupengpeng
@@ -103,12 +108,12 @@ public class UserClServlet extends HttpServlet {
 			
 		}else if("gotoAddUser".equals(type)){
 			//
-			
+			System.out.println("001");
 			request.getRequestDispatcher("/AddUserView").forward(request, response);
 			
 		}else if("add".equals(type)){
-			//接收用户新的信息
-			String id = request.getParameter("id");
+//			//接收用户新的信息
+//			String id = request.getParameter("id");
 			String uid = request.getParameter("uid");
 			String username = request.getParameter("username");
 			String sex = request.getParameter("sex");
@@ -123,21 +128,75 @@ public class UserClServlet extends HttpServlet {
 			String password = request.getParameter("password");
 			String integral = request.getParameter("integral");
 			String isdefaultaddress = request.getParameter("isdefaultaddress");
-			//把接收到的信息，封装成一个User对象
-			User user = new User(Integer.parseInt(id),uid, username, sex, phonenumber,
-					location, detailedaddress, postcode, birthday, wechat,
-					growthvalue,account, password, integral, isdefaultaddress);
+//			//把接收到的信息，封装成一个User对象
+//			User user = new User(Integer.parseInt(id),uid, username, sex, phonenumber,
+//					location, detailedaddress, postcode, birthday, wechat,
+//					growthvalue,account, password, integral, isdefaultaddress);
+//			
+//			//添加用户
+//			if(usersService.addUser(user)){
+//				//ok
+//				request.setAttribute("info", "添加成功");
+//				request.getRequestDispatcher("/Ok").forward(request, response);
+//			}else{
+//				//error
+//				request.setAttribute("info", "添加失败");
+//				request.getRequestDispatcher("/Error").forward(request, response);
+//			}
 			
-			//修改用户信息
-			if(usersService.addUser(user)){
-				//ok
-				request.setAttribute("info", "添加成功");
-				request.getRequestDispatcher("/Ok").forward(request, response);
-			}else{
+		
+			
+			Session session = null;
+			Transaction transaction = null;
+			try {
+				
+				//1.：使用SessionFactory创建Session对象
+				//理解：类似于jdbc的连接数据库
+				session = HibernateUtils.getSessionObject();
+				//2.：开启事务
+				transaction = session.beginTransaction();
+				//3.：写具体的crud操作
+				
+				//4.：写具体的crud操作
+				com.jiudianlianxian.entity.User user = new com.jiudianlianxian.entity.User();
+				user.setUid(uid);
+				user.setUsername(username);
+				user.setSex(sex);
+				user.setPhonenumber(phonenumber);
+				user.setLocation(location);
+				user.setDetailedaddress(detailedaddress);
+				user.setPostcode(postcode);
+				user.setBirthday(birthday);
+				user.setWechat(wechat);
+				user.setGrowthvalue(growthvalue);
+				user.setAccount(account);
+				user.setPassword(password);
+				user.setIntegral(integral);
+				user.setIsdefaultaddress(isdefaultaddress);
+				//调用session方法实现添加
+				session.save(user);
+				
+				//4.：提交事务
+				transaction.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+				//5.回滚事务
+				transaction.rollback();
+				
 				//error
 				request.setAttribute("info", "添加失败");
 				request.getRequestDispatcher("/Error").forward(request, response);
+				
+				
+				
+			} finally {
+				//6.：关闭资源     在使用了与本地线程绑定的session对象之后，就不需要手动关闭session了
+//				session.close();
 			}
+			//ok
+			request.setAttribute("info", "添加成功");
+			request.getRequestDispatcher("/Ok").forward(request, response);
+			
 			
 		}
 		
